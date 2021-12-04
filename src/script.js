@@ -14,9 +14,6 @@ window.onload = function () {
   var sortByNamePizza = document.querySelector(".sortByNamePizza");
   var sortByNameSteak = document.querySelector(".sortByNameSteak");
   var sortByNameAll = document.querySelector(".sortByNameAll");
-  var sortByAbvPizza = document.querySelector(".sortByAbvPizza");
-  var sortByAbvSteak = document.querySelector(".sortByAbvSteak");
-  var sortByAbvAll = document.querySelector(".sortByAbvAll");
 
   function getData(e) {
     e.preventDefault();
@@ -43,7 +40,9 @@ window.onload = function () {
               "<a href='#' class='item__text__pizza'>" +
               name +
               " " +
+              "<span class='value__abv__pizza'>" +
               abv +
+              "</span>" +
               "%" +
               "<img src='" +
               img +
@@ -72,7 +71,7 @@ window.onload = function () {
         var parent = document.querySelector(".dropdown-menu-pizza");
       var SortElements = new Object();
       items.forEach(function(item, indx){
-        var itemValue = parseInt(item.querySelector('.item__text__pizza').textContent.replace(/\D/g, ""));
+        var itemValue = parseInt(item.querySelector('.value__abv__pizza').textContent * 100);
         SortElements[itemValue] = {'element': item, 'index': indx} ;
       });
       var keys = Object.keys(SortElements);
@@ -128,7 +127,9 @@ window.onload = function () {
               "<a href='#' class='item__text__steak'>" +
               name +
               " " +
+              "<span class='value__abv__steak'>" +
               abv +
+              "</span>" +
               "%" +
               "<img src='" +
               img +
@@ -156,7 +157,7 @@ window.onload = function () {
         var parent = document.querySelector(".dropdown-menu-steak");
       var SortElements = new Object();
       items.forEach(function(item, indx){
-        var itemValue = parseInt(item.querySelector('.item__text__steak').textContent.replace(/\D/g, ""));
+        var itemValue = parseInt(item.querySelector('.value__abv__steak').textContent * 100);
         SortElements[itemValue] = {'element': item, 'index': indx} ;
       });
       var keys = Object.keys(SortElements);
@@ -211,7 +212,9 @@ window.onload = function () {
               "<a href='#' class='item__text__all'>" +
               name +
               " " +
+              "<span class='value__abv__all'>" +
               abv +
+              "</span>" +
               "%" +
               "<img src='" +
               img +
@@ -238,10 +241,13 @@ window.onload = function () {
         var parent = document.querySelector(".dropdown-menu-all");
       var SortElements = new Object();
       items.forEach(function(item, indx){
-        var itemValue = parseInt(item.querySelector('.item__text__all').textContent.replace(/\D/g, ""));
+        var itemValue = parseInt(item.querySelector('.value__abv__all').textContent * 100);
+
         SortElements[itemValue] = {'element': item, 'index': indx} ;
+        //console.log(SortElements)
       });
       var keys = Object.keys(SortElements);
+      //console.log(keys)
       function compareNumeric1(a, b) {
         a = parseInt(a);
         b = parseInt(b);
